@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Fuencor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Inter, system-ui, sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-red-50 via-red-100 to-red-200 text-gray-900">
+    <header class="bg-white/90 backdrop-blur border-b border-red-200 shadow-sm sticky top-0 z-20">
+        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+                <a href="index.html" class="text-2xl font-semibold text-red-700">Fuencor</a>
+                <p class="text-sm text-red-500 opacity-90">Propiedades con estilo y confianza</p>
+            </div>
+            <nav>
+                <ul class="flex flex-wrap items-center gap-3 text-sm font-medium text-red-700">
+                    <li><a href="dashboard.html" class="px-3 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700">Dashboard</a></li>
+                    <li><a href="manual.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Manual Interactivo</a></li>
+                    <li><a href="checklist.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Checklist Diaria</a></li>
+                    <li><a href="retroalimentacion.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Retroalimentación</a></li>
+                    <li><a href="gamificacion.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Gamificación</a></li>
+                    <li><a href="crecimiento.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Crecimiento</a></li>
+                    <li><a href="index.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-6 py-10">
+        <section class="text-center mb-12">
+            <h1 class="text-3xl font-semibold text-red-700 mb-4">Bienvenido al Dashboard de Fuencor</h1>
+            <p class="text-gray-600">Accede a las diferentes secciones para gestionar tu trabajo y crecimiento profesional.</p>
+        </section>
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="manual.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">Manual Interactivo</h3>
+                <p class="text-gray-600">Accede a videos, guías y scripts para tu capacitación.</p>
+            </a>
+            <a href="checklist.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">Checklist Diaria</h3>
+                <p class="text-gray-600">Marca tus tareas completadas y añade observaciones.</p>
+            </a>
+            <a href="retroalimentacion.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">Retroalimentación</h3>
+                <p class="text-gray-600">Comparte tus avances y recibe feedback del supervisor.</p>
+            </a>
+            <a href="gamificacion.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">Gamificación</h3>
+                <p class="text-gray-600">Ve tus insignias, rankings y puntos acumulados.</p>
+            </a>
+            <a href="crecimiento.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50 md:col-span-2 lg:col-span-1">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">Crecimiento y Niveles</h3>
+                <p class="text-gray-600">Revisa tu progreso y metas para ascender de nivel.</p>
+            </a>
+        </section>
+    </main>
+</body>
+</html>
