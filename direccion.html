@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAFUEX - Directorio y Documentos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(12px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="dashboard.html" class="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </a>
+                <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">Directorio y Documentación</h1>
+            </div>
+            
+            <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                🌙
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-5xl mx-auto w-full px-4 py-8 animate-fade-in-up">
+        
+        <section class="mb-8">
+            <div class="relative max-w-md">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                    🔍
+                </span>
+                <input type="text" id="search-input" onkeyup="filterDirectory()" placeholder="Buscar contactos, departamentos o manuales..." class="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition shadow-sm placeholder-slate-400 dark:placeholder-slate-500">
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <section class="lg:col-span-2 space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">Contactos de Soporte y Supervisión</h3>
+                
+                <div id="directory-list" class="space-y-3">
+                    
+                    <div class="directory-card p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm flex items-center justify-between gap-4 hover:border-slate-300 dark:hover:border-slate-700 transition duration-200">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">👨‍💻</div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Soporte Técnico Informático</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Atención a fallas de infraestructura y accesos</p>
+                            </div>
+                        </div>
+                        <a href="mailto:soporte@cafuex.com" class="text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 px-3 py-2 rounded-xl transition">Contactar</a>
+                    </div>
+
+                    <div class="directory-card p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm flex items-center justify-between gap-4 hover:border-slate-300 dark:hover:border-slate-700 transition duration-200">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">👩‍💼</div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Recursos Humanos (RH)</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Gestión de incidencias, nóminas y contratos</p>
+                            </div>
+                        </div>
+                        <a href="mailto:rh@cafuex.com" class="text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 px-3 py-2 rounded-xl transition">Contactar</a>
+                    </div>
+
+                    <div class="directory-card p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm flex items-center justify-between gap-4 hover:border-slate-300 dark:hover:border-slate-700 transition duration-200">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-amber-50 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold">👨‍💼</div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Carlos Mendoza</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Coordinador General y Auditoría de Calidad</p>
+                            </div>
+                        </div>
+                        <a href="mailto:carlos.m@cafuex.com" class="text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 px-3 py-2 rounded-xl transition">Contactar</a>
+                    </div>
+
+                </div>
+
+                <div id="no-results" class="hidden text-center py-12 text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm">
+                    <span class="text-3xl block mb-2">🤷‍♂️</span>
+                    <p class="font-bold text-sm text-slate-800 dark:text-slate-200">Sin coincidencias</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Prueba modificando los términos del buscador.</p>
+                </div>
+            </section>
+
+            <section class="space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">Formatos e Instructivos</h3>
+                
+                <div class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm space-y-3">
+                    <p class="text-xs text-slate-400 mb-4 font-medium">Descarga u obtén acceso directo a las normativas de CAFUEX:</p>
+                    
+                    <a href="manual.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-950/50 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition text-sm">
+                        <span class="text-xl">📘</span>
+                        <div>
+                            <h5 class="font-bold text-slate-800 dark:text-slate-200">Manual Operativo de Convivencia</h5>
+                            <p class="text-[11px] text-slate-400">Normas y buenas prácticas internas</p>
+                        </div>
+                    </a>
+
+                    <a href="#" onclick="event.preventDefault(); alert('Abriendo Formato de Incidencias Técnicas...');" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-950/50 border border-transparent hover:border-slate-100 dark:hover:border-slate-800 transition text-sm">
+                        <span class="text-xl">📋</span>
+                        <div>
+                            <h5 class="font-bold text-slate-800 dark:text-slate-200">Plantilla de Reportes RH</h5>
+                            <p class="text-[11px] text-slate-400">Descarga directa en formato PDF</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Función del buscador en tiempo real
+        function filterDirectory() {
+            const input = document.getElementById('search-input').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.directory-card');
+            const noResultsMsg = document.getElementById('no-results');
+            let hasResults = false;
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = 'flex';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (!hasResults && input !== '') {
+                noResultsMsg.classList.remove('hidden');
+            } else {
+                noResultsMsg.classList.add('hidden');
+            }
+        }
+
+        // Control del Tema Claro / Oscuro
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        
+        function updateThemeIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleBtn.innerText = '☀️';
+            } else {
+                themeToggleBtn.innerText = '🌙';
+            }
+        }
+
+        updateThemeIcon();
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+                updateThemeIcon();
+            });
+        }
+    </script>
+</body>
+</html>

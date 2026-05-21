@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAFUEX - Solicitudes RH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Cargar tema inicial
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-out': 'fadeOut 0.3s ease-in forwards'
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeOut: {
+                            '0%': { opacity: '1', transform: 'translateY(0)' },
+                            '100%': { opacity: '0', transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .tab-content, .dynamic-field { display: none; }
+        .tab-content.active, .dynamic-field.active { display: block; animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .tab-content.hiding, .dynamic-field.hiding { animation: fadeOut 0.3s ease-in forwards; }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="dashboard.html" class="text-slate-500 hover:text-indigo-600 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </a>
+                <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Recursos Humanos</h1>
+            </div>
+            <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                🌙
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-4xl mx-auto w-full px-4 py-8">
+        
+        <div class="flex space-x-2 mb-8 animate-fade-in-up border-b border-slate-200 dark:border-slate-800 pb-2">
+            <button onclick="switchTab('tab-nueva', this)" class="tab-btn active px-5 py-2.5 rounded-xl text-sm font-bold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 transition">
+                📝 Nueva Solicitud
+            </button>
+            <button onclick="switchTab('tab-historial', this)" class="tab-btn px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition">
+                📂 Mi Historial
+            </button>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden min-h-[400px]">
+            
+            <div id="tab-nueva" class="tab-content active">
+                <h2 class="text-xl font-bold mb-6">Generar Trámite</h2>
+                
+                <form class="space-y-6" onsubmit="event.preventDefault(); alert('Solicitud enviada a RH');">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tipo de Solicitud</label>
+                        <select id="tipo-solicitud" onchange="changeFormFields()" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none transition cursor-pointer">
+                            <option value="none" disabled selected>Selecciona una opción...</option>
+                            <option value="vacaciones">🌴 Vacaciones / Días Libres</option>
+                            <option value="enfermedad">🤒 Permiso por Enfermedad</option>
+                            <option value="incidencia">⚠️ Reporte de Incidencia</option>
+                        </select>
+                    </div>
+
+                    <div id="field-vacaciones" class="dynamic-field bg-indigo-50/50 dark:bg-indigo-900/10 p-5 rounded-2xl border border-indigo-100 dark:border-indigo-900/30">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Fecha de Inicio</label>
+                                <input type="date" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Fecha de Fin</label>
+                                <input type="date" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none transition">
+                            </div>
+                            <div class="sm:col-span-2 text-sm text-indigo-600 dark:text-indigo-400 font-medium">
+                                * Tienes 6 días de vacaciones disponibles.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="field-enfermedad" class="dynamic-field bg-blue-50/50 dark:bg-blue-900/10 p-5 rounded-2xl border border-blue-100 dark:border-blue-900/30">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Adjuntar Receta o Justificante Médico</label>
+                            <div class="border-2 border-dashed border-blue-300 dark:border-blue-700 rounded-xl p-6 text-center hover:bg-blue-50 dark:hover:bg-blue-900/20 transition cursor-pointer">
+                                <span class="text-2xl mb-2 block">📄</span>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Haz clic aquí para subir tu archivo (PDF, JPG, PNG)</p>
+                                <input type="file" class="hidden" id="file-upload">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="field-incidencia" class="dynamic-field bg-amber-50/50 dark:bg-amber-900/10 p-5 rounded-2xl border border-amber-100 dark:border-amber-900/30">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Descripción de la Incidencia</label>
+                            <textarea rows="4" placeholder="Describe brevemente qué sucedió..." class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-amber-500 outline-none transition resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-bold transition shadow-lg shadow-indigo-500/25">Enviar Solicitud</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="tab-historial" class="tab-content">
+                <h2 class="text-xl font-bold mb-6">Mis Solicitudes Recientes</h2>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/30">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center text-lg">✓</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Vacaciones</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">12 Feb 2026 - 15 Feb 2026</p>
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 text-xs font-bold">Aprobado</span>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/30">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-600 flex items-center justify-center text-lg">⏳</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Justificante Médico</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Subido el 05 May 2026</p>
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 text-xs font-bold">En Revisión</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // 1. Lógica de Pestañas Principales
+        function switchTab(tabId, btnElement) {
+            const currentActive = document.querySelector('.tab-content.active');
+            const newActive = document.getElementById(tabId);
+            
+            if (currentActive === newActive) return;
+
+            // Animación de salida
+            currentActive.classList.remove('active');
+            currentActive.classList.add('hiding');
+
+            // Cambiar estilos de los botones
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = 'tab-btn px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition';
+            });
+            btnElement.className = 'tab-btn active px-5 py-2.5 rounded-xl text-sm font-bold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 transition';
+
+            // Animación de entrada
+            setTimeout(() => {
+                currentActive.classList.remove('hiding');
+                newActive.classList.add('active');
+            }, 300);
+        }
+
+        // 2. Lógica del Formulario Dinámico (Aparición de campos extra)
+        function changeFormFields() {
+            const selector = document.getElementById('tipo-solicitud');
+            const selectedValue = selector.value;
+            
+            // Ocultar el campo que esté activo actualmente
+            const currentActiveField = document.querySelector('.dynamic-field.active');
+            if (currentActiveField) {
+                currentActiveField.classList.remove('active');
+                currentActiveField.classList.add('hiding');
+                
+                // Esperar a que termine la animación de salida para ocultarlo del DOM
+                setTimeout(() => {
+                    currentActiveField.classList.remove('hiding');
+                    showNewField(selectedValue);
+                }, 300);
+            } else {
+                // Si no había ninguno activo, mostramos el nuevo directamente
+                showNewField(selectedValue);
+            }
+        }
+
+        function showNewField(value) {
+            if (value === 'none') return;
+            const newField = document.getElementById('field-' + value);
+            if (newField) {
+                newField.classList.add('active');
+            }
+        }
+
+        // 3. Script de alternancia de tema
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

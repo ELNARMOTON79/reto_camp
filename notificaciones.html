@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAFUEX - Notificaciones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(12px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="dashboard.html" class="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </a>
+                <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">Notificaciones</h1>
+            </div>
+            
+            <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                🌙
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-3xl mx-auto w-full px-4 py-8 animate-fade-in-up">
+        
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Alertas Recientes</h2>
+            <button onclick="clearAllNotifications()" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">Marcar todas como leídas</button>
+        </div>
+
+        <div id="notif-container" class="space-y-3.5">
+            
+            <div class="notif-item p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm flex items-start justify-between gap-4 transition duration-300 transform">
+                <div class="flex gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 flex items-center justify-center text-lg shrink-0">
+                        🚨
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">Incidencia Técnica Reportada</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-relaxed">
+                            Tu último ticket técnico ha sido escalado al departamento de Dirección por el supervisor de turno. Revisa el estatus pronto.
+                        </p>
+                        <span class="text-[10px] text-slate-400 block mt-2 font-medium">Hace 10 minutos</span>
+                    </div>
+                </div>
+                <button onclick="dismissNotification(this)" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm p-1">✕</button>
+            </div>
+
+            <div class="notif-item p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm flex items-start justify-between gap-4 transition duration-300 transform">
+                <div class="flex gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg shrink-0">
+                        🏆
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">¡Insignia Desbloqueada!</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-relaxed">
+                            Felicidades, has desbloqueado el logro "Top Semanal" tras completar tus evaluaciones de desempeño de manera sobresaliente.
+                        </p>
+                        <span class="text-[10px] text-slate-400 block mt-2 font-medium">Hace 2 horas</span>
+                    </div>
+                </div>
+                <button onclick="dismissNotification(this)" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm p-1">✕</button>
+            </div>
+
+            <div class="notif-item p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm flex items-start justify-between gap-4 transition duration-300 transform">
+                <div class="flex gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg shrink-0">
+                        📅
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">Recordatorio de Checklist Diario</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-relaxed">
+                            No olvides rellenar y guardar tu tabla de actividades obligatorias antes de proceder al cierre técnico de tu turno actual.
+                        </p>
+                        <span class="text-[10px] text-slate-400 block mt-2 font-medium">Ayer</span>
+                    </div>
+                </div>
+                <button onclick="dismissNotification(this)" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm p-1">✕</button>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Borrar una notificación individual con transición fluida
+        function dismissNotification(button) {
+            const item = button.closest('.notif-item');
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                item.remove();
+                checkEmptyState();
+            }, 200);
+        }
+
+        // Borrar todas las notificaciones
+        function clearAllNotifications() {
+            const container = document.getElementById('notif-container');
+            container.style.opacity = '0';
+            
+            setTimeout(() => {
+                container.innerHTML = '';
+                container.style.opacity = '1';
+                checkEmptyState();
+            }, 200);
+        }
+
+        // Comprobar si la bandeja se quedó vacía para meter el Empty State
+        function checkEmptyState() {
+            const container = document.getElementById('notif-container');
+            if (container.children.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-slate-500 dark:text-slate-400 animate-fade-in-up">
+                        <span class="text-4xl block mb-2">📭</span>
+                        <p class="font-bold text-base text-slate-800 dark:text-slate-200">Todo al día</p>
+                        <p class="text-xs text-slate-400 mt-0.5">No tienes notificaciones o alertas pendientes.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Control del Tema Claro / Oscuro
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        
+        function updateThemeIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleBtn.innerText = '☀️';
+            } else {
+                themeToggleBtn.innerText = '🌙';
+            }
+        }
+
+        updateThemeIcon();
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+                updateThemeIcon();
+            });
+        }
+    </script>
+</body>
+</html>

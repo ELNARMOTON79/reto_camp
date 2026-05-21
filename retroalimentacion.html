@@ -7,8 +7,7 @@
     <title>CAFUEX - Retroalimentación</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,200..800;1,200..800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -16,125 +15,135 @@
         } else {
             document.documentElement.classList.remove('dark');
         }
-        tailwind.config = { darkMode: 'class', theme: { extend: { animation: { 'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards' }, keyframes: { fadeInUp: { '0%': { opacity: '0', transform: 'translateY(15px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } } } } }
+
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(12px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
     </script>
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
-        }
-
-        * {
-            transition-property: background-color, border-color, text-color, fill, stroke;
-            transition-duration: 200ms;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
 
-<body
-    class="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/20 to-slate-100 dark:from-[#0b0f19] dark:via-[#111827] dark:to-[#1e1b4b] text-slate-800 dark:text-slate-200">
+<body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
-    <header
-        class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm sticky top-0 z-20">
-        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-                <a href="index.html"
-                    class="text-2xl font-bold tracking-tight text-indigo-900 dark:text-indigo-400 hover:text-indigo-800 transition">CAFUEX</a>
-                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Capacitaciones para un futuro con
-                    éxito</p>
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="dashboard.html" class="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </a>
+                <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">Retroalimentación</h1>
             </div>
-            <nav>
-                <ul
-                    class="flex flex-wrap items-center gap-x-2 gap-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                    <li><a href="dashboard.html"
-                            class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Dashboard</a>
-                    </li>
-                    <li><a href="manual.html"
-                            class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 transition">Manual
-                            Interactivo</a></li>
-                    <li><a href="checklist.html"
-                            class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 transition">Checklist
-                            Diaria</a></li>
-                    <li><a href="retroalimentacion.html"
-                            class="px-3 py-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-md shadow-indigo-500/20">Retroalimentación</a>
-                    </li>
-                    <li><a href="gamificacion.html"
-                            class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 transition">Gamificación</a>
-                    </li>
-                    <li><a href="crecimiento.html"
-                            class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 transition">Crecimiento</a>
-                    </li>
-                    <li><a href="index.html"
-                            class="px-3 py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/30 hover:text-rose-700 transition text-rose-600 font-bold border border-rose-100 dark:border-rose-900 bg-rose-50/20 dark:bg-rose-950/10">Cerrar
-                            sesión</a></li>
-                    <li>
-                        <button id="theme-toggle"
-                            class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800/80 text-slate-600 dark:text-slate-400 transition">
-                            <span class="hidden dark:block">☀️</span>
-                            <span class="block dark:hidden">🌙</span>
-                        </button>
-                    </li>
-                </ul>
-            </nav>
+            
+            <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                🌙
+            </button>
         </div>
     </header>
 
-    <main class="mx-auto max-w-6xl px-6 py-10 animate-fade-in-up">
-        <section
-            class="rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900/60 p-8 shadow-xl shadow-slate-200/50 dark:shadow-none">
-            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Retroalimentación</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-lg font-bold text-indigo-950 dark:text-indigo-300 mb-4">Retroalimentación del
-                            Asesor</h3>
-                        <textarea
-                            class="w-full h-40 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 bg-slate-50 dark:bg-slate-800/50 focus:bg-white dark:focus:bg-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/50 outline-none transition resize-none text-slate-800 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500"
-                            placeholder="Escribe tus dificultades, avances, problemas o comentarios..."></textarea>
-                    </div>
-                    <div>
-                        <button
-                            class="mt-4 px-5 py-2.5 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition active:scale-[0.98] shadow-md shadow-indigo-500/25">Enviar
-                            Retroalimentación</button>
-                    </div>
-                </div>
-                <div
-                    class="flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-100 dark:border-slate-800 pt-8 lg:pt-0 lg:pl-8">
-                    <div>
-                        <h3 class="text-lg font-bold text-indigo-950 dark:text-indigo-300 mb-4">Retroalimentación del
-                            Supervisor</h3>
-                        <div class="mb-4">
-                            <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Semáforo de
-                                Desempeño:</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span
-                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 font-semibold border border-emerald-100 dark:border-emerald-800/50 rounded-full text-sm">🟢
-                                    Excelente</span>
-                                <span
-                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 font-semibold border border-amber-100 dark:border-amber-800/50 rounded-full text-sm">🟡
-                                    En Progreso</span>
-                                <span
-                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400 font-semibold border border-rose-100 dark:border-rose-800/50 rounded-full text-sm">🔴
-                                    Requiere Apoyo</span>
+    <main class="flex-1 max-w-5xl mx-auto w-full px-4 py-8 animate-fade-in-up">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <section class="lg:col-span-2 space-y-4">
+                <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">Comentarios del Supervisor</h3>
+                
+                <div class="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-bold">👨‍💼</div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Carlos Mendoza</h4>
+                                <p class="text-[11px] text-slate-400">Coordinador de Calidad • Hace 2 días</p>
                             </div>
                         </div>
-                        <textarea
-                            class="w-full h-24 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 bg-slate-50 dark:bg-slate-800/50 focus:bg-white dark:focus:bg-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/50 outline-none transition resize-none text-slate-800 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500"
-                            placeholder="Observaciones del supervisor..."></textarea>
+                        <span class="px-2 py-1 rounded-lg text-xs font-bold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/30">Nota: 9.5/10</span>
                     </div>
-                    <div>
-                        <button
-                            class="mt-4 px-5 py-2.5 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition active:scale-[0.98] shadow-md shadow-indigo-500/25">Enviar
-                            Observaciones</button>
-                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Excelente desempeño en las últimas llamadas de auditoría. Has mantenido un excelente control del saludo obligatorio y el manejo de la empatía. Como punto de mejora, recuerda registrar detalladamente las capturas en el módulo de incidencias de RH para agilizar el soporte técnico. ¡Buen trabajo!
+                    </p>
                 </div>
-            </div>
-        </section>
+
+                <div class="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm opacity-85">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 flex items-center justify-center text-xs font-bold">👩‍💼</div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Laura Gómez</h4>
+                                <p class="text-[11px] text-slate-400">Supervisora General • 15 de May, 2026</p>
+                            </div>
+                        </div>
+                        <span class="px-2 py-1 rounded-lg text-xs font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-100 dark:border-amber-900/30">Nota: 8.0/10</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Se observa consistencia en el cumplimiento del checklist diario, sin embargo, el tiempo de respuesta en tickets críticos estuvo ligeramente por encima del promedio establecido. Monitorea tus métricas esta semana para regularizar la velocidad de atención.
+                    </p>
+                </div>
+            </section>
+
+            <section class="flex flex-col gap-4">
+                <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">Réplica / Acuse</h3>
+                
+                <div class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm sticky top-24">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
+                        Si tienes comentarios sobre tus evaluaciones o deseas confirmar que has leído las anotaciones de mejora, redacta tu respuesta aquí.
+                    </p>
+                    
+                    <form id="feedback-form" onsubmit="submitFeedback(event)">
+                        <div class="mb-4">
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Mis observaciones</label>
+                            <textarea id="feedback-text" required class="w-full h-32 border border-slate-200 dark:border-slate-800 rounded-xl p-3 bg-slate-50 dark:bg-slate-950 text-sm focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition resize-none placeholder-slate-400" placeholder="Escribe tu mensaje o justificación técnica..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl text-sm font-bold transition shadow-md shadow-indigo-500/20 active:scale-[0.99]">
+                            ✉️ Enviar Observaciones
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+        </div>
     </main>
 
     <script>
+        // Simulación de envío del formulario
+        function submitFeedback(event) {
+            event.preventDefault();
+            const textarea = document.getElementById('feedback-text');
+            if (textarea.value.trim() !== "") {
+                alert('¡Tus observaciones han sido registradas y notificadas al cuerpo de supervisión!');
+                textarea.value = "";
+            }
+        }
+
+        // Control del Tema Claro / Oscuro
         const themeToggleBtn = document.getElementById('theme-toggle');
+        
+        function updateThemeIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleBtn.innerText = '☀️';
+            } else {
+                themeToggleBtn.innerText = '🌙';
+            }
+        }
+
+        updateThemeIcon();
+
         if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', function () {
+            themeToggleBtn.addEventListener('click', function() {
                 if (document.documentElement.classList.contains('dark')) {
                     document.documentElement.classList.remove('dark');
                     localStorage.setItem('theme', 'light');
@@ -142,9 +151,9 @@
                     document.documentElement.classList.add('dark');
                     localStorage.setItem('theme', 'dark');
                 }
+                updateThemeIcon();
             });
         }
     </script>
 </body>
-
 </html>

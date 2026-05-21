@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAFUEX - Manual Interactivo</title>
-    <!-- Fonts -->
+    <title>CAFUEX - Manual Técnico</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-    <!-- Tailwind -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,200..800;1,200..800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Cargar tema inicial
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -24,11 +21,11 @@
             theme: {
                 extend: {
                     animation: {
-                        'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-in-up': 'fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                     },
                     keyframes: {
                         fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' }
                         }
                     }
@@ -37,138 +34,122 @@
         }
     </script>
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
-        }
-        * {
-            transition-property: background-color, border-color, text-color, fill, stroke;
-            transition-duration: 200ms;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/20 to-slate-100 dark:from-[#0b0f19] dark:via-[#111827] dark:to-[#1e1b4b] text-slate-800 dark:text-slate-200">
-    <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm sticky top-0 z-20">
-        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-                <a href="index.html" class="text-2xl font-bold tracking-tight text-indigo-900 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition">CAFUEX</a>
-                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Capacitaciones para un futuro con éxito</p>
+<body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="dashboard.html" class="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </a>
+                <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">Manual Operativo</h1>
             </div>
-            <nav>
-                <ul class="flex flex-wrap items-center gap-x-2 gap-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                    <li><a href="dashboard.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Dashboard</a></li>
-                    <li><a href="manual.html" class="px-3 py-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-md shadow-indigo-500/20">Manual Interactivo</a></li>
-                    <li><a href="checklist.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Checklist Diaria</a></li>
-                    <li><a href="retroalimentacion.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Retroalimentación</a></li>
-                    <li><a href="gamificacion.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Gamificación</a></li>
-                    <li><a href="crecimiento.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Crecimiento</a></li>
-                    <li><a href="index.html" class="px-3 py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/30 hover:text-rose-700 dark:hover:text-rose-400 transition text-rose-600 dark:text-rose-400 font-bold border border-rose-100 dark:border-rose-900 bg-rose-50/20 dark:bg-rose-950/10">Cerrar sesión</a></li>
-                    <li>
-                        <button id="theme-toggle" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800/80 text-slate-600 dark:text-slate-400 transition">
-                            <span class="hidden dark:block">☀️</span>
-                            <span class="block dark:hidden">🌙</span>
-                        </button>
-                    </li>
-                </ul>
-            </nav>
+            
+            <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                🌙
+            </button>
         </div>
     </header>
 
-    <main class="mx-auto max-w-6xl px-6 py-10 animate-fade-in-up">
-        <section class="rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900/60 p-8 shadow-xl dark:shadow-indigo-950/10">
-            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">Manual Interactivo</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Video -->
-                <div class="p-6 border border-slate-200 dark:border-slate-800/80 rounded-3xl bg-slate-50/50 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-900/80 hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:shadow-lg transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 font-bold mb-4">
-                            🎥
-                        </div>
-                        <h3 class="font-bold text-slate-900 dark:text-indigo-300 mb-2 text-lg">Videos</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">Tutoriales en video para capacitación rápida y efectiva.</p>
-                    </div>
-                    <button class="w-full mt-3 px-4 py-2.5 bg-indigo-600 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-violet-600 text-white font-semibold rounded-xl hover:bg-indigo-700 dark:hover:from-indigo-500 dark:hover:to-violet-500 transition active:scale-[0.98] shadow-md shadow-indigo-500/10">Ver Videos</button>
-                </div>
-
-                <!-- Guías -->
-                <div class="p-6 border border-slate-200 dark:border-slate-800/80 rounded-3xl bg-slate-50/50 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-900/80 hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:shadow-lg transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 font-bold mb-4">
-                            📄
-                        </div>
-                        <h3 class="font-bold text-slate-900 dark:text-indigo-300 mb-2 text-lg">Guías</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">Guías paso a paso para procesos y trámites clave.</p>
-                    </div>
-                    <button class="w-full mt-3 px-4 py-2.5 bg-indigo-600 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-violet-600 text-white font-semibold rounded-xl hover:bg-indigo-700 dark:hover:from-indigo-500 dark:hover:to-violet-500 transition active:scale-[0.98] shadow-md shadow-indigo-500/10">Leer Guías</button>
-                </div>
-
-                <!-- Scripts -->
-                <div class="p-6 border border-slate-200 dark:border-slate-800/80 rounded-3xl bg-slate-50/50 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-900/80 hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:shadow-lg transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 font-bold mb-4">
-                            💬
-                        </div>
-                        <h3 class="font-bold text-slate-900 dark:text-indigo-300 mb-2 text-lg">Scripts</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">Scripts estructurados de conversación para tus llamadas de ventas.</p>
-                    </div>
-                    <button class="w-full mt-3 px-4 py-2.5 bg-indigo-600 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-violet-600 text-white font-semibold rounded-xl hover:bg-indigo-700 dark:hover:from-indigo-500 dark:hover:to-violet-500 transition active:scale-[0.98] shadow-md shadow-indigo-500/10">Ver Scripts</button>
-                </div>
-
-                <!-- Cómo Vender -->
-                <div class="p-6 border border-slate-200 dark:border-slate-800/80 rounded-3xl bg-slate-50/50 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-900/80 hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:shadow-lg transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 font-bold mb-4">
-                            📈
-                        </div>
-                        <h3 class="font-bold text-slate-900 dark:text-indigo-300 mb-2 text-lg">Cómo Vender</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">Estrategias y metodologías efectivas de venta inmobiliaria.</p>
-                    </div>
-                    <button class="w-full mt-3 px-4 py-2.5 bg-indigo-600 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-violet-600 text-white font-semibold rounded-xl hover:bg-indigo-700 dark:hover:from-indigo-500 dark:hover:to-violet-500 transition active:scale-[0.98] shadow-md shadow-indigo-500/10">Aprender</button>
-                </div>
-
-                <!-- Cómo Captar Clientes -->
-                <div class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-slate-50/50 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-900/80 hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:shadow-lg transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 font-bold mb-4">
-                            🔍
-                        </div>
-                        <h3 class="font-bold text-slate-900 dark:text-indigo-300 mb-2 text-lg">Cómo Captar Clientes</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">Técnicas modernas offline y online para atraer nuevos clientes.</p>
-                    </div>
-                    <button class="w-full mt-3 px-4 py-2.5 bg-indigo-600 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-violet-600 text-white font-semibold rounded-xl hover:bg-indigo-700 dark:hover:from-indigo-500 dark:hover:to-violet-500 transition active:scale-[0.98] shadow-md shadow-indigo-500/10">Explorar</button>
-                </div>
-
-                <!-- Cómo Publicar Propiedades -->
-                <div class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-slate-50/50 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-900/80 hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:shadow-lg transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 font-bold mb-4">
-                            📢
-                        </div>
-                        <h3 class="font-bold text-slate-900 dark:text-indigo-300 mb-2 text-lg">Cómo Publicar Propiedades</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">Guía práctica para publicar anuncios inmobiliarios que conviertan.</p>
-                    </div>
-                    <button class="w-full mt-3 px-4 py-2.5 bg-indigo-600 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-violet-600 text-white font-semibold rounded-xl hover:bg-indigo-700 dark:hover:from-indigo-500 dark:hover:to-violet-500 transition active:scale-[0.98] shadow-md shadow-indigo-500/10">Publicar</button>
-                </div>
-
-                <!-- Técnicas de Seguimiento -->
-                <div class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-slate-50/50 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-900/80 hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:shadow-lg transition duration-300 flex flex-col justify-between md:col-span-2 lg:col-span-3">
-                    <div>
-                        <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 font-bold mb-4">
-                            🔄
-                        </div>
-                        <h3 class="font-bold text-slate-900 dark:text-indigo-300 mb-2 text-lg">Técnicas de Seguimiento</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">Métodos sistemáticos para mantener el contacto e interés con tus clientes potenciales.</p>
-                    </div>
-                    <button class="w-full mt-3 px-4 py-2.5 bg-indigo-600 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-violet-600 text-white font-semibold rounded-xl hover:bg-indigo-700 dark:hover:from-indigo-500 dark:hover:to-violet-500 transition active:scale-[0.98] shadow-md shadow-indigo-500/10">Aprender Técnicas</button>
-                </div>
+    <main class="flex-1 max-w-4xl mx-auto w-full px-4 py-8 animate-fade-in-up">
+        
+        <div class="mb-8">
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">🔍</span>
+                <input type="text" id="manual-search" oninput="filterManual()" placeholder="Buscar un proceso, regla o palabra clave..." 
+                    class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition shadow-sm placeholder-slate-400 dark:placeholder-slate-500">
             </div>
-        </section>
+        </div>
+
+        <div class="space-y-4" id="manual-container">
+            
+            <section class="manual-section bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-sm transition">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-xl">🚀</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white section-title">1. Introducción y Filosofía CAFUEX</h3>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed section-content">
+                    Nuestra misión es guiar a cada usuario hacia un desarrollo óptimo mediante capacitaciones interactivas. Como asesor, tu rol principal es mantener una comunicación asertiva, empática y orientada a la resolución ágil de dudas. El éxito de la plataforma radica en el seguimiento diario de los objetivos planteados.
+                </p>
+            </section>
+
+            <section class="manual-section bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-sm transition">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-xl">📞</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white section-title">2. Protocolo de Atención al Cliente</h3>
+                </div>
+                <div class="text-slate-600 dark:text-slate-400 text-sm space-y-2 section-content">
+                    <p>Cada interacción debe seguir la estructura estándar de calidad institucional:</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li><strong>Saludo Obligatorio:</strong> "Bienvenido a CAFUEX, mi nombre es [Tu Nombre], ¿cómo puedo ayudarte hoy?"</li>
+                        <li><strong>Escucha Activa:</strong> Evitar interrumpir al usuario mientras explica su incidencia o consulta técnica.</li>
+                        <li><strong>Cierre Profesional:</strong> Confirmar que no queden dudas pendientes antes de dar por finalizada la sesión.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="manual-section bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-sm transition">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-xl">🛠️</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white section-title">3. Escalación de Incidencias Técnicas</h3>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed section-content">
+                    Si un problema de la plataforma supera el nivel de atención básico, debe registrarse inmediatamente en el módulo de incidencias de Recursos Humanos o reportarse al canal de Dirección. Asegúrate de adjuntar capturas de pantalla claras y una descripción detallada del error del sistema para agilizar el soporte técnico especializado.
+                </p>
+            </section>
+
+            <div id="no-results" class="hidden text-center py-12 text-slate-500 dark:text-slate-400">
+                <span class="text-3xl block mb-2">💡</span>
+                <p class="font-medium">No se encontraron secciones que coincidan con tu búsqueda.</p>
+            </div>
+
+        </div>
     </main>
 
-    <!-- Script de alternancia de tema -->
     <script>
+        // 1. Buscador en Tiempo Real
+        function filterManual() {
+            const query = document.getElementById('manual-search').value.toLowerCase();
+            const sections = document.querySelectorAll('.manual-section');
+            let hasResults = false;
+
+            sections.forEach(section => {
+                const title = section.querySelector('.section-title').innerText.toLowerCase();
+                const content = section.querySelector('.section-content').innerText.toLowerCase();
+
+                if (title.includes(query) || content.includes(query)) {
+                    section.classList.remove('hidden');
+                    hasResults = true;
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
+            const noResultsMessage = document.getElementById('no-results');
+            if (hasResults) {
+                noResultsMessage.classList.add('hidden');
+            } else {
+                noResultsMessage.classList.remove('hidden');
+            }
+        }
+
+        // 2. Control e Icono Dinámico del Tema
         const themeToggleBtn = document.getElementById('theme-toggle');
+        
+        function updateThemeIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleBtn.innerText = '☀️';
+            } else {
+                themeToggleBtn.innerText = '🌙';
+            }
+        }
+
+        updateThemeIcon();
+
         if (themeToggleBtn) {
             themeToggleBtn.addEventListener('click', function() {
                 if (document.documentElement.classList.contains('dark')) {
@@ -178,9 +159,9 @@
                     document.documentElement.classList.add('dark');
                     localStorage.setItem('theme', 'dark');
                 }
+                updateThemeIcon();
             });
         }
     </script>
 </body>
-
 </html>

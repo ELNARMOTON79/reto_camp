@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAFUEX - Dashboard</title>
-    <!-- Fonts -->
+    <title>CAFUEX - Dashboard Principal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-    <!-- Tailwind -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,200..800;1,200..800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Cargar tema inicial
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -37,79 +34,126 @@
         }
     </script>
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
-        }
-        * {
-            transition-property: background-color, border-color, text-color, fill, stroke;
-            transition-duration: 200ms;
-        }
+        body { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; }
     </style>
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/20 to-slate-100 dark:from-[#0b0f19] dark:via-[#111827] dark:to-[#1e1b4b] text-slate-800 dark:text-slate-200">
-    <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm sticky top-0 z-20">
-        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+<body class="min-h-screen bg-slate-50 dark:bg-[#0b0f19] text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm sticky top-0 z-20">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between">
             <div>
-                <a href="index.html" class="text-2xl font-bold tracking-tight text-indigo-900 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition">CAFUEX</a>
-                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Capacitaciones para un futuro con éxito</p>
+                <a href="dashboard.html" class="text-xl font-black tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">CAFUEX</a>
             </div>
-            <nav>
-                <ul class="flex flex-wrap items-center gap-x-2 gap-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                    <li><a href="dashboard.html" class="px-3 py-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-md shadow-indigo-500/20">Dashboard</a></li>
-                    <li><a href="manual.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Manual Interactivo</a></li>
-                    <li><a href="checklist.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Checklist Diaria</a></li>
-                    <li><a href="retroalimentacion.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Retroalimentación</a></li>
-                    <li><a href="gamificacion.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Gamificación</a></li>
-                    <li><a href="crecimiento.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Crecimiento</a></li>
-                    <li><a href="index.html" class="px-3 py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/30 hover:text-rose-700 dark:hover:text-rose-400 transition text-rose-600 dark:text-rose-400 font-bold border border-rose-100 dark:border-rose-900 bg-rose-50/20 dark:bg-rose-950/10">Cerrar sesión</a></li>
-                    <li>
-                        <button id="theme-toggle" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800/80 text-slate-600 dark:text-slate-400 transition">
-                            <span class="hidden dark:block">☀️</span>
-                            <span class="block dark:hidden">🌙</span>
-                        </button>
-                    </li>
-                </ul>
+            
+            <nav class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-300">
+                    <a href="perfil.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">Mi Perfil</a>
+                    <a href="notificaciones.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
+                        <span>Notificaciones</span>
+                        <span class="w-2 h-2 rounded-full bg-rose-500 inline-block"></span>
+                    </a>
+                </div>
+
+                <button id="theme-toggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800/80 text-slate-600 dark:text-slate-400 transition text-sm">
+                    <span class="hidden dark:block">☀️</span>
+                    <span class="block dark:hidden">🌙</span>
+                </button>
+
+                <a href="index.html" class="px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/20 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 text-sm font-bold transition border border-rose-100 dark:border-rose-900/30">
+                    Salir
+                </a>
             </nav>
         </div>
     </header>
 
-    <main class="mx-auto max-w-6xl px-6 py-10 space-y-12 animate-fade-in-up">
-        <section class="text-center space-y-4">
-            <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white md:text-4xl tracking-tight">Bienvenido al Dashboard de CAFUEX</h1>
-            <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">Accede a las diferentes secciones para gestionar tu trabajo y crecimiento profesional de manera eficiente.</p>
-        </section>
+    <main class="mx-auto max-w-6xl px-4 sm:px-6 py-8 animate-fade-in-up">
         
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <a href="manual.html"
-                class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-white dark:bg-slate-900/60 shadow-md hover:shadow-xl hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-indigo-500/5 transition-all duration-300 block">
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Manual Interactivo</h3>
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">Accede a videos, guías y scripts para tu capacitación constante.</p>
+        <section class="mb-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-violet-700 text-white shadow-xl shadow-indigo-500/10 relative overflow-hidden">
+            <div class="relative z-10 max-w-xl">
+                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">¡Hola de nuevo, Asesor! 👋</h2>
+                <p class="text-indigo-100 text-sm sm:text-base mb-6 leading-relaxed">Este es tu panel central de CAFUEX. Monitorea tus tareas, administra tu crecimiento profesional y accede a tus recursos.</p>
+                
+                <div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-4 text-center sm:text-left">
+                    <div>
+                        <span class="block text-xs text-indigo-200 font-medium">Puntos Totales</span>
+                        <span class="text-xl font-bold">1,450 XP</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs text-indigo-200 font-medium">Checklist Hoy</span>
+                        <span class="text-xl font-bold">80%</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs text-indigo-200 font-medium">Rango Actual</span>
+                        <span class="text-xl font-bold">Plata IV</span>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+        </section>
+
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 px-1">Módulos del Sistema</h3>
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            
+            <a href="checklist.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">📅</div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Checklist Diaria</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Completa y registra tus responsabilidades obligatorias del día.</p>
+                </div>
             </a>
-            <a href="checklist.html"
-                class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-white dark:bg-slate-900/60 shadow-md hover:shadow-xl hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-indigo-500/5 transition-all duration-300 block">
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Checklist Diaria</h3>
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">Marca tus tareas completadas y añade observaciones diarias.</p>
+
+            <a href="gamificacion.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">🏆</div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Gamificación</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Consulta tus insignias logradas, recompensas y tabla de posiciones.</p>
+                </div>
             </a>
-            <a href="retroalimentacion.html"
-                class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-white dark:bg-slate-900/60 shadow-md hover:shadow-xl hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-indigo-500/5 transition-all duration-300 block">
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Retroalimentación</h3>
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">Comparte tus avances y recibe valiosa retroalimentación del supervisor.</p>
+
+            <a href="crecimiento.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">📈</div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Plan de Crecimiento</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Visualiza los requisitos y el progreso de metas para ascender.</p>
+                </div>
             </a>
-            <a href="gamificacion.html"
-                class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-white dark:bg-slate-900/60 shadow-md hover:shadow-xl hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-indigo-500/5 transition-all duration-300 block">
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Gamificación</h3>
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">Visualiza tus insignias ganadas, rankings y puntos acumulados.</p>
+
+            <a href="manual.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">📖</div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Manual Técnico</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Guía interactiva de consulta sobre procesos y normativas internas.</p>
+                </div>
             </a>
-            <a href="crecimiento.html"
-                class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-white dark:bg-slate-900/60 shadow-md hover:shadow-xl hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-indigo-500/5 transition-all duration-300 block md:col-span-2 lg:col-span-1">
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Crecimiento y Niveles</h3>
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">Revisa tu progreso y las metas establecidas para ascender de nivel.</p>
+
+            <a href="retroalimentacion.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-violet-50 dark:bg-violet-950/50 text-violet-600 dark:text-violet-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">💬</div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Retroalimentación</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Revisa los comentarios de desempeño realizados por tus coordinadores.</p>
+                </div>
             </a>
+
+            <a href="solicitudes.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-teal-50 dark:bg-teal-950/50 text-teal-600 dark:text-teal-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">💼</div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Solicitudes RH</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Gestiona tus trámites de vacaciones, justificaciones o incidencias.</p>
+                </div>
+            </a>
+
+            <a href="direccion.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between sm:col-span-2 lg:col-span-1">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/50 text-fuchsia-600 dark:text-fuchsia-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">👑</div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Canal de Dirección</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Comunicados oficiales y estructura del equipo directivo.</p>
+                </div>
+            </a>
+
         </section>
     </main>
 
-    <!-- Script de alternancia de tema -->
     <script>
         const themeToggleBtn = document.getElementById('theme-toggle');
         if (themeToggleBtn) {
@@ -125,5 +169,4 @@
         }
     </script>
 </body>
-
 </html>
