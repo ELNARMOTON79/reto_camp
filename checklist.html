@@ -1,71 +1,128 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checklist Diaria - Fuencor</title>
+    <title>CAFUEX - Checklist Diaria</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Cargar tema inicial
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: Inter, system-ui, sans-serif;
+            font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+        }
+        * {
+            transition-property: background-color, border-color, text-color, fill, stroke;
+            transition-duration: 200ms;
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-red-50 via-red-100 to-red-200 text-gray-900">
-    <header class="bg-white/90 backdrop-blur border-b border-red-200 shadow-sm sticky top-0 z-20">
-        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/20 to-slate-100 dark:from-[#0b0f19] dark:via-[#111827] dark:to-[#1e1b4b] text-slate-800 dark:text-slate-200">
+    <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm sticky top-0 z-20">
+        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-                <a href="index.html" class="text-2xl font-semibold text-red-700">Fuencor</a>
-                <p class="text-sm text-red-500 opacity-90">Propiedades con estilo y confianza</p>
+                <a href="index.html" class="text-2xl font-bold tracking-tight text-indigo-900 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition">CAFUEX</a>
+                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Capacitaciones para un futuro con éxito</p>
             </div>
             <nav>
-                <ul class="flex flex-wrap items-center gap-3 text-sm font-medium text-red-700">
-                    <li><a href="dashboard.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Dashboard</a></li>
-                    <li><a href="manual.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Manual Interactivo</a></li>
-                    <li><a href="checklist.html" class="px-3 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700">Checklist Diaria</a></li>
-                    <li><a href="retroalimentacion.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Retroalimentación</a></li>
-                    <li><a href="gamificacion.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Gamificación</a></li>
-                    <li><a href="crecimiento.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Crecimiento</a></li>
-                    <li><a href="index.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Cerrar sesión</a></li>
+                <ul class="flex flex-wrap items-center gap-x-2 gap-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                    <li><a href="dashboard.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Dashboard</a></li>
+                    <li><a href="manual.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Manual Interactivo</a></li>
+                    <li><a href="checklist.html" class="px-3 py-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-md shadow-indigo-500/20">Checklist Diaria</a></li>
+                    <li><a href="retroalimentacion.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Retroalimentación</a></li>
+                    <li><a href="gamificacion.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Gamificación</a></li>
+                    <li><a href="crecimiento.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Crecimiento</a></li>
+                    <li><a href="index.html" class="px-3 py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/30 hover:text-rose-700 dark:hover:text-rose-400 transition text-rose-600 dark:text-rose-400 font-bold border border-rose-100 dark:border-rose-900 bg-rose-50/20 dark:bg-rose-950/10">Cerrar sesión</a></li>
+                    <li>
+                        <button id="theme-toggle" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800/80 text-slate-600 dark:text-slate-400 transition">
+                            <span class="hidden dark:block">☀️</span>
+                            <span class="block dark:hidden">🌙</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="mx-auto max-w-6xl px-6 py-10">
-        <section class="rounded-3xl border border-red-200/70 bg-white/90 p-8 shadow-2xl shadow-red-200/40 backdrop-blur-xl">
-            <h2 class="text-2xl font-semibold text-red-700 mb-6">Checklist Diaria</h2>
-            <table class="w-full text-sm">
-                <thead>
-                    <tr class="border-b border-red-200">
-                        <th class="text-left py-2">Actividad</th>
-                        <th class="text-center py-2">Estado</th>
-                        <th class="text-center py-2">Fecha</th>
-                        <th class="text-left py-2">Observaciones</th>
-                    </tr>
-                </thead>
-                <tbody id="checklist-body">
-                    <tr class="border-b border-red-100">
-                        <td class="py-3">Contactar 5 clientes</td>
-                        <td class="text-center"><input type="checkbox" class="activity-check" data-activity="contactar"></td>
-                        <td class="text-center">09/05/26</td>
-                        <td><input type="text" class="w-full border border-red-200 rounded px-2 py-1" placeholder="Comentarios"></td>
-                    </tr>
-                    <tr class="border-b border-red-100">
-                        <td class="py-3">Publicar propiedades</td>
-                        <td class="text-center"><input type="checkbox" class="activity-check" data-activity="publicar"></td>
-                        <td class="text-center">09/05/26</td>
-                        <td><input type="text" class="w-full border border-red-200 rounded px-2 py-1" placeholder="Comentarios"></td>
-                    </tr>
-                    <tr class="border-b border-red-100">
-                        <td class="py-3">Agendar visitas</td>
-                        <td class="text-center"><input type="checkbox" class="activity-check" data-activity="agendar"></td>
-                        <td class="text-center">09/05/26</td>
-                        <td><input type="text" class="w-full border border-red-200 rounded px-2 py-1" placeholder="Comentarios"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <button id="save-checklist" class="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Guardar Checklist</button>
+    <main class="mx-auto max-w-6xl px-6 py-10 animate-fade-in-up">
+        <section class="rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900/60 p-8 shadow-xl dark:shadow-indigo-950/10">
+            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">Checklist Diaria</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 uppercase tracking-wider text-xs font-bold">
+                            <th class="text-left pb-4 px-3">Actividad</th>
+                            <th class="text-center pb-4 px-3 w-24">Estado</th>
+                            <th class="text-center pb-4 px-3 w-28">Fecha</th>
+                            <th class="text-left pb-4 px-3">Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="checklist-body">
+                        <tr class="border-b border-slate-100 dark:border-slate-850 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                            <td class="py-4 px-3 font-semibold text-slate-900 dark:text-slate-100">Contactar 5 clientes</td>
+                            <td class="text-center py-4 px-3">
+                                <input type="checkbox" class="activity-check h-5 w-5 rounded border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-indigo-600 focus:ring-indigo-500 dark:focus:ring-offset-slate-900 cursor-pointer" data-activity="contactar">
+                            </td>
+                            <td class="text-center py-4 px-3 text-slate-500 dark:text-slate-400 font-medium">09/05/26</td>
+                            <td class="py-4 px-3">
+                                <input type="text" class="w-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/50 rounded-xl px-4 py-2 text-slate-800 dark:text-slate-100 focus:bg-white dark:focus:bg-slate-950/80 focus:border-indigo-500 outline-none focus:ring-4 focus:ring-indigo-500/10 transition" placeholder="Comentarios">
+                            </td>
+                        </tr>
+                        <tr class="border-b border-slate-100 dark:border-slate-850 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                            <td class="py-4 px-3 font-semibold text-slate-900 dark:text-slate-100">Publicar propiedades</td>
+                            <td class="text-center py-4 px-3">
+                                <input type="checkbox" class="activity-check h-5 w-5 rounded border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-indigo-600 focus:ring-indigo-500 dark:focus:ring-offset-slate-900 cursor-pointer" data-activity="publicar">
+                            </td>
+                            <td class="text-center py-4 px-3 text-slate-500 dark:text-slate-400 font-medium">09/05/26</td>
+                            <td class="py-4 px-3">
+                                <input type="text" class="w-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/50 rounded-xl px-4 py-2 text-slate-800 dark:text-slate-100 focus:bg-white dark:focus:bg-slate-950/80 focus:border-indigo-500 outline-none focus:ring-4 focus:ring-indigo-500/10 transition" placeholder="Comentarios">
+                            </td>
+                        </tr>
+                        <tr class="border-b border-slate-100 dark:border-slate-850 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                            <td class="py-4 px-3 font-semibold text-slate-900 dark:text-slate-100">Agendar visitas</td>
+                            <td class="text-center py-4 px-3">
+                                <input type="checkbox" class="activity-check h-5 w-5 rounded border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-indigo-600 focus:ring-indigo-500 dark:focus:ring-offset-slate-900 cursor-pointer" data-activity="agendar">
+                            </td>
+                            <td class="text-center py-4 px-3 text-slate-500 dark:text-slate-400 font-medium">09/05/26</td>
+                            <td class="py-4 px-3">
+                                <input type="text" class="w-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/50 rounded-xl px-4 py-2 text-slate-800 dark:text-slate-100 focus:bg-white dark:focus:bg-slate-950/80 focus:border-indigo-500 outline-none focus:ring-4 focus:ring-indigo-500/10 transition" placeholder="Comentarios">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button id="save-checklist" class="mt-6 px-6 py-3.5 bg-indigo-600 dark:bg-gradient-to-r dark:from-indigo-600 dark:to-violet-600 text-white font-bold rounded-2xl hover:bg-indigo-700 dark:hover:from-indigo-500 dark:hover:to-violet-500 transition active:scale-[0.98] shadow-lg shadow-indigo-500/25 dark:shadow-indigo-500/10">Guardar Checklist</button>
         </section>
     </main>
 
@@ -100,6 +157,21 @@
                 });
             }
         });
+
+        // Script de alternancia de tema
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        }
     </script>
 </body>
+
 </html>

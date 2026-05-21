@@ -1,81 +1,175 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamificación - Fuencor</title>
+    <title>CAFUEX - Gamificación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: { 'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards' },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: Inter, system-ui, sans-serif;
+            font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+        }
+
+        * {
+            transition-property: background-color, border-color, text-color, fill, stroke;
+            transition-duration: 200ms;
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-red-50 via-red-100 to-red-200 text-gray-900">
-    <header class="bg-white/90 backdrop-blur border-b border-red-200 shadow-sm sticky top-0 z-20">
-        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+
+<body
+    class="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/20 to-slate-100 dark:from-[#0b0f19] dark:via-[#111827] dark:to-[#1e1b4b] text-slate-800 dark:text-slate-200">
+    <header
+        class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm sticky top-0 z-20">
+        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-                <a href="index.html" class="text-2xl font-semibold text-red-700">Fuencor</a>
-                <p class="text-sm text-red-500 opacity-90">Propiedades con estilo y confianza</p>
+                <a href="index.html"
+                    class="text-2xl font-bold tracking-tight text-indigo-900 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition">CAFUEX</a>
+                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Capacitaciones para un futuro con
+                    éxito</p>
             </div>
             <nav>
-                <ul class="flex flex-wrap items-center gap-3 text-sm font-medium text-red-700">
-                    <li><a href="dashboard.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Dashboard</a></li>
-                    <li><a href="manual.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Manual Interactivo</a></li>
-                    <li><a href="checklist.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Checklist Diaria</a></li>
-                    <li><a href="retroalimentacion.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Retroalimentación</a></li>
-                    <li><a href="gamificacion.html" class="px-3 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700">Gamificación</a></li>
-                    <li><a href="crecimiento.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Crecimiento</a></li>
-                    <li><a href="index.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Cerrar sesión</a></li>
+                <ul
+                    class="flex flex-wrap items-center gap-x-2 gap-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                    <li><a href="dashboard.html"
+                            class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Dashboard</a>
+                    </li>
+                    <li><a href="manual.html"
+                            class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Manual
+                            Interactivo</a></li>
+                    <li><a href="checklist.html"
+                            class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Checklist
+                            Diaria</a></li>
+                    <li><a href="retroalimentacion.html"
+                            class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Retroalimentación</a>
+                    </li>
+                    <li><a href="gamificacion.html"
+                            class="px-3 py-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-md shadow-indigo-500/20">Gamificación</a>
+                    </li>
+                    <li><a href="crecimiento.html"
+                            class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Crecimiento</a>
+                    </li>
+                    <li><a href="index.html"
+                            class="px-3 py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/30 hover:text-rose-700 dark:hover:text-rose-400 transition text-rose-600 dark:text-rose-400 font-bold border border-rose-100 dark:border-rose-900 bg-rose-50/20 dark:bg-rose-950/10">Cerrar
+                            sesión</a></li>
+                    <li>
+                        <button id="theme-toggle"
+                            class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800/80 text-slate-600 dark:text-slate-400 transition">
+                            <span class="hidden dark:block">☀️</span>
+                            <span class="block dark:hidden">🌙</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="mx-auto max-w-6xl px-6 py-10">
-        <section class="rounded-3xl border border-red-200/70 bg-white/90 p-8 shadow-2xl shadow-red-200/40 backdrop-blur-xl">
-            <h2 class="text-2xl font-semibold text-red-700 mb-6">Gamificación</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <main class="mx-auto max-w-6xl px-6 py-10 animate-fade-in-up">
+        <section
+            class="rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900/60 p-8 shadow-xl shadow-slate-200/50 dark:shadow-none">
+            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Gamificación</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
-                    <h3 class="text-lg font-semibold text-red-700 mb-4">Insignias</h3>
-                    <div class="flex flex-wrap gap-4">
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center text-2xl mb-2">🏆</div>
-                            <p class="text-sm">Primer Cierre</p>
+                    <h3 class="text-lg font-bold text-indigo-950 dark:text-indigo-300 mb-6">Insignias</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div
+                            class="flex flex-col items-center justify-center p-4 rounded-3xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50 hover:shadow-md hover:bg-white dark:hover:bg-slate-800 transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100/50 dark:border-indigo-500/20 rounded-2xl flex items-center justify-center text-2xl mb-3 shadow-inner">
+                                🏆</div>
+                            <p class="text-xs font-bold text-slate-700 dark:text-slate-300 text-center leading-snug">
+                                Primer Cierre</p>
                         </div>
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-blue-400 rounded-full flex items-center justify-center text-2xl mb-2">⭐</div>
-                            <p class="text-sm">Top Vendedor Semanal</p>
+                        <div
+                            class="flex flex-col items-center justify-center p-4 rounded-3xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50 hover:shadow-md hover:bg-white dark:hover:bg-slate-800 transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100/50 dark:border-indigo-500/20 rounded-2xl flex items-center justify-center text-2xl mb-3 shadow-inner">
+                                ⭐</div>
+                            <p class="text-xs font-bold text-slate-700 dark:text-slate-300 text-center leading-snug">Top
+                                Vendedor Semanal</p>
                         </div>
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-green-400 rounded-full flex items-center justify-center text-2xl mb-2">📞</div>
-                            <p class="text-sm">Mayor Seguimiento</p>
+                        <div
+                            class="flex flex-col items-center justify-center p-4 rounded-3xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50 hover:shadow-md hover:bg-white dark:hover:bg-slate-800 transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100/50 dark:border-indigo-500/20 rounded-2xl flex items-center justify-center text-2xl mb-3 shadow-inner">
+                                📞</div>
+                            <p class="text-xs font-bold text-slate-700 dark:text-slate-300 text-center leading-snug">
+                                Mayor Seguimiento</p>
                         </div>
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center text-2xl mb-2">🏠</div>
-                            <p class="text-sm">Más Propiedades Publicadas</p>
+                        <div
+                            class="flex flex-col items-center justify-center p-4 rounded-3xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50 hover:shadow-md hover:bg-white dark:hover:bg-slate-800 transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100/50 dark:border-indigo-500/20 rounded-2xl flex items-center justify-center text-2xl mb-3 shadow-inner">
+                                🏠</div>
+                            <p class="text-xs font-bold text-slate-700 dark:text-slate-300 text-center leading-snug">Más
+                                Propiedades</p>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold text-red-700 mb-4">Rankings</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between items-center p-2 bg-red-50 rounded-lg">
-                            <span>1. Juan Pérez</span>
-                            <span class="font-semibold">150 pts</span>
+                    <h3 class="text-lg font-bold text-indigo-950 dark:text-indigo-300 mb-6">Rankings</h3>
+                    <ul class="space-y-3">
+                        <li
+                            class="flex justify-between items-center px-5 py-3.5 bg-slate-50 dark:bg-slate-800/50 border border-slate-100/50 dark:border-slate-700/50 rounded-2xl text-slate-700 dark:text-slate-300 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition">
+                            <span class="font-semibold">1. Juan Pérez</span>
+                            <span class="font-bold text-indigo-600 dark:text-indigo-400">150 pts</span>
                         </li>
-                        <li class="flex justify-between items-center p-2 bg-red-50 rounded-lg">
-                            <span>2. María García</span>
-                            <span class="font-semibold">120 pts</span>
+                        <li
+                            class="flex justify-between items-center px-5 py-3.5 bg-slate-50 dark:bg-slate-800/50 border border-slate-100/50 dark:border-slate-700/50 rounded-2xl text-slate-700 dark:text-slate-300 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition">
+                            <span class="font-semibold">2. María García</span>
+                            <span class="font-bold text-indigo-600 dark:text-indigo-400">120 pts</span>
                         </li>
-                        <li class="flex justify-between items-center p-2 bg-red-50 rounded-lg">
-                            <span>3. Tú</span>
-                            <span class="font-semibold">100 pts</span>
+                        <li
+                            class="flex justify-between items-center px-5 py-3.5 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100/60 dark:border-indigo-500/30 rounded-2xl text-indigo-900 dark:text-indigo-200 font-extrabold shadow-sm hover:-translate-y-0.5 transition-all duration-300">
+                            <span class="flex items-center gap-2">🏆 3. Tú (Asesor)</span>
+                            <span class="font-extrabold text-indigo-700 dark:text-indigo-400">100 pts</span>
                         </li>
                     </ul>
                 </div>
             </div>
         </section>
     </main>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function () {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        }
+    </script>
 </body>
+
 </html>

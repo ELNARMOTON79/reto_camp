@@ -1,108 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fuencor</title>
+    <title>CAFUEX - Iniciar sesión</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Cargar tema inicial
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'pulse-glow': 'pulseGlow 2s infinite alternate',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 5px rgba(99, 102, 241, 0.2)' },
+                            '100%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.5)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: Inter, system-ui, sans-serif;
+            font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+        }
+        * {
+            transition-property: background-color, border-color, text-color, fill, stroke;
+            transition-duration: 200ms;
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-red-50 via-red-100 to-red-200 text-gray-900">
-    <header class="bg-white/90 backdrop-blur border-b border-red-200 shadow-sm sticky top-0 z-20">
-        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-                <a href="index.html" class="text-2xl font-semibold text-red-700">Fuencor</a>
-                <p class="text-sm text-red-500 opacity-90">Propiedades con estilo y confianza</p>
+
+<body class="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-slate-50 via-indigo-50/20 to-slate-100 dark:from-[#0b0f19] dark:via-[#111827] dark:to-[#1e1b4b] overflow-hidden relative">
+    
+    <!-- Background Auras -->
+    <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-indigo-600/10 dark:bg-indigo-600/10 blur-[100px] pointer-events-none"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-violet-600/10 dark:bg-violet-600/10 blur-[100px] pointer-events-none"></div>
+
+    <!-- Floating Theme Switcher -->
+    <div class="absolute top-6 right-6 z-20">
+        <button id="theme-toggle" class="p-3 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-900/60 backdrop-blur-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 text-slate-600 dark:text-slate-400 shadow-lg shadow-indigo-950/5 transition">
+            <span class="hidden dark:block">☀️</span>
+            <span class="block dark:hidden">🌙</span>
+        </button>
+    </div>
+
+    <!-- Login Container -->
+    <main class="w-full max-w-md rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-900/60 backdrop-blur-xl p-8 shadow-2xl shadow-indigo-950/5 dark:shadow-indigo-950/40 relative z-10 animate-fade-in-up">
+        
+        <!-- Logo & Header -->
+        <div class="mb-8 text-center">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white font-extrabold text-2xl shadow-lg shadow-indigo-500/30 mb-4">
+                C
             </div>
-            <nav>
-                <ul class="flex flex-wrap items-center gap-3 text-sm font-medium text-red-700">
-                    <li><a href="index.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Propiedades</a></li>
-                    <li><a href="contacto.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Contacto</a></li>
-                    <li><a href="aviso.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Aviso de Privacidad</a></li>
-                    <li><a href="nosotros.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Nosotros</a></li>
-                    <li><a href="portal.html" class="px-3 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700">Portal interno</a></li>
-                </ul>
-            </nav>
+            <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">CAFUEX</h1>
+            <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Ingresa tus datos para acceder al portal interno.</p>
         </div>
-    </header>
 
-    <main class="mx-auto max-w-6xl px-6 py-10 space-y-10">
-        <section class="overflow-hidden bg-white shadow-2xl shadow-red-200/80">
-            <img src="carrusel.png" alt="Imagen del carrusel" class="h-[420px] w-full object-cover sm:h-[520px]" />
-        </section>
-
-        <section class="grid gap-8 lg:grid-cols-[1.5fr_1fr] items-center">
-            <div class="space-y-6">
-                <span class="inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-800">Descubre tu próximo hogar</span>
-                <h1 class="text-4xl font-bold tracking-tight text-red-900 md:text-5xl">Encuentra propiedades en renta y venta con el estilo Fuencor</h1>
-                <p class="max-w-2xl text-lg leading-8 text-red-700/90">Explora ubicaciones clave, busca por tipo, y filtra fácilmente para ver propiedades habitacionales, comerciales e industriales en un diseño moderno y confiable.</p>
-                <div class="grid gap-3 sm:grid-cols-2">
-                    <a href="#filtros" class="rounded-xl bg-red-600 px-5 py-3 text-center text-white shadow-lg shadow-red-300/30 hover:bg-red-700">Filtra propiedades</a>
-                </div>
+        <!-- Form -->
+        <form class="space-y-5" action="dashboard.html">
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="email">Correo electrónico</label>
+                <input id="email" type="email" placeholder="tucorreo@cafuex.com"
+                    class="mt-2 w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 px-4 py-3 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-600 outline-none transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:bg-white dark:focus:bg-slate-950/80 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-500/10"
+                    required>
             </div>
-            <div class="flex items-center justify-center rounded-3xl bg-red-50 p-8 text-center shadow-sm border border-red-100">
-                <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.24em] text-red-600">Bienvenido a Fuencor</p>
-                    <h2 class="mt-4 text-3xl font-bold text-red-900">Tu búsqueda de propiedades comienza aquí</h2>
-                    <p class="mt-4 text-red-700/90">Visualiza los mejores lugares y encuentra el espacio ideal para tus nuevas inversiones o tu próximo hogar.</p>
-                </div>
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="password">Contraseña</label>
+                <input id="password" type="password" placeholder="••••••••"
+                    class="mt-2 w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 px-4 py-3 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-600 outline-none transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:bg-white dark:focus:bg-slate-950/80 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-500/10"
+                    required>
             </div>
-        </section>
-
-        <section id="filtros" class="rounded-3xl bg-white/90 p-8 shadow-xl shadow-red-200/50 border border-red-100">
-            <div class="mb-6 flex items-center justify-between gap-4">
-                <div>
-                    <h2 class="text-2xl font-semibold text-red-900">Filtra tus opciones</h2>
-                    <p class="text-sm text-red-600">Busca por ubicación, tipo de operación y tipo de propiedad.</p>
-                </div>
-                <span class="rounded-full bg-red-50 px-4 py-2 text-sm font-medium text-red-700">Paleta roja</span>
+            
+            <div class="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+                <label class="flex items-center gap-2 cursor-pointer select-none">
+                    <input type="checkbox"
+                        class="h-4 w-4 rounded border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-white dark:focus:ring-offset-slate-950">
+                    Recordarme
+                </label>
+                <a href="#" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition">¿Olvidaste tu contraseña?</a>
             </div>
-            <form action="" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                <label class="space-y-2 text-sm text-red-700">
-                    <span>Ubicación</span>
-                    <input type="text" placeholder="Buscar por ubicación" class="w-full rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-gray-900 outline-none transition focus:border-red-500 focus:ring-4 focus:ring-red-100" />
-                </label>
-                <label class="space-y-2 text-sm text-red-700">
-                    <span>Operación</span>
-                    <select name="tipo" class="w-full rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-gray-900 outline-none transition focus:border-red-500 focus:ring-4 focus:ring-red-100">
-                        <option value="opcion">Seleccione una opción</option>
-                        <option value="venta">Venta</option>
-                        <option value="renta">Renta</option>
-                    </select>
-                </label>
-                <label class="space-y-2 text-sm text-red-700">
-                    <span>Tipo de propiedad</span>
-                    <select name="propiedad" class="w-full rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-gray-900 outline-none transition focus:border-red-500 focus:ring-4 focus:ring-red-100">
-                        <option value="Habitacional">Habitacional</option>
-                        <option value="Comercial">Comercial</option>
-                        <option value="Industrial">Industrial</option>
-                    </select>
-                </label>
-                <div class="flex items-end gap-3">
-                    <button type="submit" class="w-full rounded-2xl bg-red-600 px-5 py-3 text-white shadow-lg shadow-red-300/40 hover:bg-red-700">Filtrar</button>
-                    <button type="reset" class="w-full rounded-2xl border border-red-200 bg-white px-5 py-3 text-red-700 hover:bg-red-50">Limpiar</button>
-                </div>
-            </form>
-        </section>
 
-        <section class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-            <article class="rounded-3xl bg-red-50 p-6 shadow-sm border border-red-100">
-                <h3 class="text-xl font-semibold text-red-900">Propiedades en venta</h3>
-                <p class="mt-3 text-red-700/90">Encuentra casas y departamentos con ubicación estratégica y diseño moderno.</p>
-            </article>
-            <article class="rounded-3xl bg-red-50 p-6 shadow-sm border border-red-100">
-                <h3 class="text-xl font-semibold text-red-900">Opciones en renta</h3>
-                <p class="mt-3 text-red-700/90">Renta espacios comerciales e industriales con facilidad.</p>
-            </article>
-            <article class="rounded-3xl bg-red-50 p-6 shadow-sm border border-red-100">
-                <h3 class="text-xl font-semibold text-red-900">Asesoría personalizada</h3>
-                <p class="mt-3 text-red-700/90">Nuestro equipo ayuda a elegir la opción que mejor se adapte a tu presupuesto.</p>
-            </article>
-        </section>
+            <button type="submit"
+                class="w-full rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-indigo-500/25 dark:shadow-indigo-500/10 transition active:scale-[0.98]">
+                Entrar
+            </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
+            ¿No tienes cuenta? <a href="#" class="font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition">Contacta con administración</a>
+        </div>
     </main>
+
+    <!-- Theme toggle Script -->
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        }
+    </script>
 </body>
+
 </html>

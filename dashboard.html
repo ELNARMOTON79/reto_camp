@@ -1,64 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Fuencor</title>
+    <title>CAFUEX - Dashboard</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Cargar tema inicial
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: Inter, system-ui, sans-serif;
+            font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+        }
+        * {
+            transition-property: background-color, border-color, text-color, fill, stroke;
+            transition-duration: 200ms;
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-red-50 via-red-100 to-red-200 text-gray-900">
-    <header class="bg-white/90 backdrop-blur border-b border-red-200 shadow-sm sticky top-0 z-20">
-        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/20 to-slate-100 dark:from-[#0b0f19] dark:via-[#111827] dark:to-[#1e1b4b] text-slate-800 dark:text-slate-200">
+    <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm sticky top-0 z-20">
+        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-                <a href="index.html" class="text-2xl font-semibold text-red-700">Fuencor</a>
-                <p class="text-sm text-red-500 opacity-90">Propiedades con estilo y confianza</p>
+                <a href="index.html" class="text-2xl font-bold tracking-tight text-indigo-900 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition">CAFUEX</a>
+                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Capacitaciones para un futuro con éxito</p>
             </div>
             <nav>
-                <ul class="flex flex-wrap items-center gap-3 text-sm font-medium text-red-700">
-                    <li><a href="dashboard.html" class="px-3 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700">Dashboard</a></li>
-                    <li><a href="manual.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Manual Interactivo</a></li>
-                    <li><a href="checklist.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Checklist Diaria</a></li>
-                    <li><a href="retroalimentacion.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Retroalimentación</a></li>
-                    <li><a href="gamificacion.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Gamificación</a></li>
-                    <li><a href="crecimiento.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Crecimiento</a></li>
-                    <li><a href="index.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Cerrar sesión</a></li>
+                <ul class="flex flex-wrap items-center gap-x-2 gap-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                    <li><a href="dashboard.html" class="px-3 py-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-md shadow-indigo-500/20">Dashboard</a></li>
+                    <li><a href="manual.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Manual Interactivo</a></li>
+                    <li><a href="checklist.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Checklist Diaria</a></li>
+                    <li><a href="retroalimentacion.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Retroalimentación</a></li>
+                    <li><a href="gamificacion.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Gamificación</a></li>
+                    <li><a href="crecimiento.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-700 dark:hover:text-indigo-400 transition">Crecimiento</a></li>
+                    <li><a href="index.html" class="px-3 py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/30 hover:text-rose-700 dark:hover:text-rose-400 transition text-rose-600 dark:text-rose-400 font-bold border border-rose-100 dark:border-rose-900 bg-rose-50/20 dark:bg-rose-950/10">Cerrar sesión</a></li>
+                    <li>
+                        <button id="theme-toggle" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800/80 text-slate-600 dark:text-slate-400 transition">
+                            <span class="hidden dark:block">☀️</span>
+                            <span class="block dark:hidden">🌙</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="mx-auto max-w-6xl px-6 py-10">
-        <section class="text-center mb-12">
-            <h1 class="text-3xl font-semibold text-red-700 mb-4">Bienvenido al Dashboard de Fuencor</h1>
-            <p class="text-gray-600">Accede a las diferentes secciones para gestionar tu trabajo y crecimiento profesional.</p>
+    <main class="mx-auto max-w-6xl px-6 py-10 space-y-12 animate-fade-in-up">
+        <section class="text-center space-y-4">
+            <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white md:text-4xl tracking-tight">Bienvenido al Dashboard de CAFUEX</h1>
+            <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">Accede a las diferentes secciones para gestionar tu trabajo y crecimiento profesional de manera eficiente.</p>
         </section>
+        
         <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <a href="manual.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
-                <h3 class="text-xl font-semibold text-red-700 mb-2">Manual Interactivo</h3>
-                <p class="text-gray-600">Accede a videos, guías y scripts para tu capacitación.</p>
+            <a href="manual.html"
+                class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-white dark:bg-slate-900/60 shadow-md hover:shadow-xl hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-indigo-500/5 transition-all duration-300 block">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Manual Interactivo</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">Accede a videos, guías y scripts para tu capacitación constante.</p>
             </a>
-            <a href="checklist.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
-                <h3 class="text-xl font-semibold text-red-700 mb-2">Checklist Diaria</h3>
-                <p class="text-gray-600">Marca tus tareas completadas y añade observaciones.</p>
+            <a href="checklist.html"
+                class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-white dark:bg-slate-900/60 shadow-md hover:shadow-xl hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-indigo-500/5 transition-all duration-300 block">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Checklist Diaria</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">Marca tus tareas completadas y añade observaciones diarias.</p>
             </a>
-            <a href="retroalimentacion.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
-                <h3 class="text-xl font-semibold text-red-700 mb-2">Retroalimentación</h3>
-                <p class="text-gray-600">Comparte tus avances y recibe feedback del supervisor.</p>
+            <a href="retroalimentacion.html"
+                class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-white dark:bg-slate-900/60 shadow-md hover:shadow-xl hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-indigo-500/5 transition-all duration-300 block">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Retroalimentación</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">Comparte tus avances y recibe valiosa retroalimentación del supervisor.</p>
             </a>
-            <a href="gamificacion.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
-                <h3 class="text-xl font-semibold text-red-700 mb-2">Gamificación</h3>
-                <p class="text-gray-600">Ve tus insignias, rankings y puntos acumulados.</p>
+            <a href="gamificacion.html"
+                class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-white dark:bg-slate-900/60 shadow-md hover:shadow-xl hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-indigo-500/5 transition-all duration-300 block">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Gamificación</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">Visualiza tus insignias ganadas, rankings y puntos acumulados.</p>
             </a>
-            <a href="crecimiento.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50 md:col-span-2 lg:col-span-1">
-                <h3 class="text-xl font-semibold text-red-700 mb-2">Crecimiento y Niveles</h3>
-                <p class="text-gray-600">Revisa tu progreso y metas para ascender de nivel.</p>
+            <a href="crecimiento.html"
+                class="p-6 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl bg-white dark:bg-slate-900/60 shadow-md hover:shadow-xl hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-indigo-500/5 transition-all duration-300 block md:col-span-2 lg:col-span-1">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Crecimiento y Niveles</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">Revisa tu progreso y las metas establecidas para ascender de nivel.</p>
             </a>
         </section>
     </main>
+
+    <!-- Script de alternancia de tema -->
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        }
+    </script>
 </body>
+
 </html>
