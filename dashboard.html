@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAFUEX - Dashboard Principal</title>
+    <title>CAFUEX - Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,200..800;1,200..800&display=swap" rel="stylesheet">
@@ -21,11 +21,11 @@
             theme: {
                 extend: {
                     animation: {
-                        'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-in-up': 'fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                     },
                     keyframes: {
                         fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '0%': { opacity: '0', transform: 'translateY(12px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' }
                         }
                     }
@@ -34,128 +34,126 @@
         }
     </script>
     <style>
-        body { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
 
-<body class="min-h-screen bg-slate-50 dark:bg-[#0b0f19] text-slate-800 dark:text-slate-200 transition-colors duration-300">
+<body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
-    <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm sticky top-0 z-20">
-        <div class="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between">
-            <div>
-                <a href="dashboard.html" class="text-xl font-black tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">CAFUEX</a>
-            </div>
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
             
-            <nav class="flex items-center gap-4">
-                <div class="hidden md:flex items-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-300">
-                    <a href="perfil.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">Mi Perfil</a>
-                    <a href="notificaciones.html" class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
-                        <span>Notificaciones</span>
-                        <span class="w-2 h-2 rounded-full bg-rose-500 inline-block"></span>
-                    </a>
-                </div>
+            <div class="flex items-center gap-2">
+                <span class="text-xl">🚀</span>
+                <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">CAFUEX</h1>
+            </div>
 
-                <button id="theme-toggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800/80 text-slate-600 dark:text-slate-400 transition text-sm">
-                    <span class="hidden dark:block">☀️</span>
-                    <span class="block dark:hidden">🌙</span>
-                </button>
-
-                <a href="index.html" class="px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/20 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 text-sm font-bold transition border border-rose-100 dark:border-rose-900/30">
-                    Salir
-                </a>
+            <nav class="hidden md:flex items-center gap-1">
+                <a href="dashboard.html" class="px-3 py-2 rounded-xl text-sm font-bold bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400">Inicio</a>
+                <a href="checklist.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Checklist</a>
+                <a href="direccion.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Directorio</a>
+                <a href="perfil.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Mi Perfil</a>
             </nav>
+            
+            <div class="flex items-center gap-2">
+                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition text-sm">
+                    🌙
+                </button>
+                
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                    <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 space-y-1">
+            <a href="dashboard.html" class="block px-4 py-2.5 rounded-xl text-sm font-bold bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400">Inicio</a>
+            <a href="checklist.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">Checklist</a>
+            <a href="direccion.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">Directorio</a>
+            <a href="perfil.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">Mi Perfil</a>
         </div>
     </header>
 
-    <main class="mx-auto max-w-6xl px-4 sm:px-6 py-8 animate-fade-in-up">
+    <main class="flex-1 max-w-6xl mx-auto w-full px-4 py-8 animate-fade-in-up">
         
-        <section class="mb-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-violet-700 text-white shadow-xl shadow-indigo-500/10 relative overflow-hidden">
-            <div class="relative z-10 max-w-xl">
-                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">¡Hola de nuevo, Asesor! 👋</h2>
-                <p class="text-indigo-100 text-sm sm:text-base mb-6 leading-relaxed">Este es tu panel central de CAFUEX. Monitorea tus tareas, administra tu crecimiento profesional y accede a tus recursos.</p>
-                
-                <div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-4 text-center sm:text-left">
-                    <div>
-                        <span class="block text-xs text-indigo-200 font-medium">Puntos Totales</span>
-                        <span class="text-xl font-bold">1,450 XP</span>
-                    </div>
-                    <div>
-                        <span class="block text-xs text-indigo-200 font-medium">Checklist Hoy</span>
-                        <span class="text-xl font-bold">80%</span>
-                    </div>
-                    <div>
-                        <span class="block text-xs text-indigo-200 font-medium">Rango Actual</span>
-                        <span class="text-xl font-bold">Plata IV</span>
-                    </div>
-                </div>
-            </div>
-            <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+        <section class="mb-8">
+            <h2 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white sm:text-3xl">Panel Central</h2>
+            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Bienvenido al ecosistema operativo de CAFUEX.</p>
         </section>
 
-        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 px-1">Módulos del Sistema</h3>
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             
-            <a href="checklist.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
-                <div>
-                    <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">📅</div>
-                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Checklist Diaria</h4>
-                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Completa y registra tus responsabilidades obligatorias del día.</p>
-                </div>
+            <a href="checklist.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
+                <span class="text-2xl block mb-3">✅</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Checklist Diaria</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Registro obligatorio y control de actividades operacionales de tu turno.</p>
             </a>
 
-            <a href="gamificacion.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
-                <div>
-                    <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">🏆</div>
-                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Gamificación</h4>
-                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Consulta tus insignias logradas, recompensas y tabla de posiciones.</p>
-                </div>
+            <a href="manual.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
+                <span class="text-2xl block mb-3">📖</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Manual Interactivo</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Consulta las normativas de convivencia, guías rápidas y material multimedia.</p>
             </a>
 
-            <a href="crecimiento.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
-                <div>
-                    <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">📈</div>
-                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Plan de Crecimiento</h4>
-                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Visualiza los requisitos y el progreso de metas para ascender.</p>
-                </div>
+            <a href="crecimiento.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
+                <span class="text-2xl block mb-3">📈</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Plan de Crecimiento</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Monitorea tu escalafón, objetivos comerciales y metas de ascenso.</p>
             </a>
 
-            <a href="manual.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
-                <div>
-                    <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">📖</div>
-                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Manual Técnico</h4>
-                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Guía interactiva de consulta sobre procesos y normativas internas.</p>
-                </div>
+            <a href="gamificacion.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
+                <span class="text-2xl block mb-3">🎖️</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Logros e Insignias</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Visualiza tus puntos acumulados, recompensas y el ranking global.</p>
             </a>
 
-            <a href="retroalimentacion.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
-                <div>
-                    <div class="w-10 h-10 rounded-xl bg-violet-50 dark:bg-violet-950/50 text-violet-600 dark:text-violet-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">💬</div>
-                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Retroalimentación</h4>
-                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Revisa los comentarios de desempeño realizados por tus coordinadores.</p>
-                </div>
+            <a href="direccion.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
+                <span class="text-2xl block mb-3">📇</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Directorio y Soporte</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Contactos directos de soporte técnico, recursos humanos y supervisores.</p>
             </a>
 
-            <a href="solicitudes.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between">
-                <div>
-                    <div class="w-10 h-10 rounded-xl bg-teal-50 dark:bg-teal-950/50 text-teal-600 dark:text-teal-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">💼</div>
-                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Solicitudes RH</h4>
-                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Gestiona tus trámites de vacaciones, justificaciones o incidencias.</p>
-                </div>
-            </a>
-
-            <a href="direccion.html" class="group p-5 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/40 shadow-sm hover:shadow-md hover:border-indigo-500/40 transition duration-200 flex flex-col justify-between sm:col-span-2 lg:col-span-1">
-                <div>
-                    <div class="w-10 h-10 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/50 text-fuchsia-600 dark:text-fuchsia-400 flex items-center justify-center text-lg font-bold mb-3 group-hover:scale-105 transition">👑</div>
-                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">Canal de Dirección</h4>
-                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Comunicados oficiales y estructura del equipo directivo.</p>
-                </div>
+            <a href="perfil.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
+                <span class="text-2xl block mb-3">👤</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Mi Cuenta</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Configura tus datos de contacto, cambia tu contraseña y revisa tu estatus.</p>
             </a>
 
         </section>
     </main>
 
     <script>
+        // Función para abrir y cerrar el menú móvil de forma reactiva
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                // Cambiar icono a "X" (Cerrar)
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+            } else {
+                menu.classList.add('hidden');
+                // Regresar icono a "Hamburguesa"
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+            }
+        }
+
+        // Control del Tema Claro / Oscuro
         const themeToggleBtn = document.getElementById('theme-toggle');
+        
+        function updateThemeIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleBtn.innerText = '☀️';
+            } else {
+                themeToggleBtn.innerText = '🌙';
+            }
+        }
+
+        updateThemeIcon();
+
         if (themeToggleBtn) {
             themeToggleBtn.addEventListener('click', function() {
                 if (document.documentElement.classList.contains('dark')) {
@@ -165,6 +163,7 @@
                     document.documentElement.classList.add('dark');
                     localStorage.setItem('theme', 'dark');
                 }
+                updateThemeIcon();
             });
         }
     </script>

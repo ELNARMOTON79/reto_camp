@@ -41,97 +41,94 @@
 <body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
     <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
-        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <a href="dashboard.html" class="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                </a>
-                <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">Retroalimentación</h1>
-            </div>
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
             
-            <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
-                🌙
-            </button>
+            <div class="flex items-center gap-2">
+                <span class="text-xl">🚀</span>
+                <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">CAFUEX</h1>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-1">
+                <a href="dashboard.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Inicio</a>
+                <a href="checklist.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Checklist</a>
+                <a href="direccion.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Directorio</a>
+                <a href="perfil.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Mi Perfil</a>
+            </nav>
+            
+            <div class="flex items-center gap-2">
+                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition text-sm">
+                    🌙
+                </button>
+                
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                    <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 space-y-1">
+            <a href="dashboard.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">Inicio</a>
+            <a href="checklist.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">Checklist</a>
+            <a href="direccion.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">Directorio</a>
+            <a href="perfil.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">Mi Perfil</a>
         </div>
     </header>
 
-    <main class="flex-1 max-w-5xl mx-auto w-full px-4 py-8 animate-fade-in-up">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            
-            <section class="lg:col-span-2 space-y-4">
-                <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">Comentarios del Supervisor</h3>
-                
-                <div class="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm">
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                        <div class="flex items-center gap-2.5">
-                            <div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-bold">👨‍💼</div>
-                            <div>
-                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Carlos Mendoza</h4>
-                                <p class="text-[11px] text-slate-400">Coordinador de Calidad • Hace 2 días</p>
-                            </div>
-                        </div>
-                        <span class="px-2 py-1 rounded-lg text-xs font-bold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/30">Nota: 9.5/10</span>
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                        Excelente desempeño en las últimas llamadas de auditoría. Has mantenido un excelente control del saludo obligatorio y el manejo de la empatía. Como punto de mejora, recuerda registrar detalladamente las capturas en el módulo de incidencias de RH para agilizar el soporte técnico. ¡Buen trabajo!
-                    </p>
-                </div>
-
-                <div class="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm opacity-85">
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                        <div class="flex items-center gap-2.5">
-                            <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 flex items-center justify-center text-xs font-bold">👩‍💼</div>
-                            <div>
-                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Laura Gómez</h4>
-                                <p class="text-[11px] text-slate-400">Supervisora General • 15 de May, 2026</p>
-                            </div>
-                        </div>
-                        <span class="px-2 py-1 rounded-lg text-xs font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-100 dark:border-amber-900/30">Nota: 8.0/10</span>
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                        Se observa consistencia en el cumplimiento del checklist diario, sin embargo, el tiempo de respuesta en tickets críticos estuvo ligeramente por encima del promedio establecido. Monitorea tus métricas esta semana para regularizar la velocidad de atención.
-                    </p>
-                </div>
-            </section>
-
-            <section class="flex flex-col gap-4">
-                <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">Réplica / Acuse</h3>
-                
-                <div class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm sticky top-24">
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
-                        Si tienes comentarios sobre tus evaluaciones o deseas confirmar que has leído las anotaciones de mejora, redacta tu respuesta aquí.
-                    </p>
-                    
-                    <form id="feedback-form" onsubmit="submitFeedback(event)">
-                        <div class="mb-4">
-                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Mis observaciones</label>
-                            <textarea id="feedback-text" required class="w-full h-32 border border-slate-200 dark:border-slate-800 rounded-xl p-3 bg-slate-50 dark:bg-slate-950 text-sm focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition resize-none placeholder-slate-400" placeholder="Escribe tu mensaje o justificación técnica..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl text-sm font-bold transition shadow-md shadow-indigo-500/20 active:scale-[0.99]">
-                            ✉️ Enviar Observaciones
-                        </button>
-                    </form>
-                </div>
-            </section>
-
+    <main class="flex-1 max-w-4xl mx-auto w-full px-4 py-8 animate-fade-in-up">
+        
+        <div class="mb-6">
+            <h2 class="text-2xl font-black text-slate-900 dark:text-white">Retroalimentación</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Revisa tus métricas de rendimiento y comentarios de supervisión.</p>
         </div>
+
+        <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-6">
+            
+            <div>
+                <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Evaluación General</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-4 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950/40">
+                        <span class="text-xs text-slate-400 font-medium">Calificación del Mes</span>
+                        <h4 class="text-xl font-black text-slate-800 dark:text-white mt-0.5">9.2 / 10</h4>
+                    </div>
+                    <div class="p-4 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950/40">
+                        <span class="text-xs text-slate-400 font-medium">Estado del Desempeño</span>
+                        <h4 class="text-xl font-black text-emerald-600 dark:text-emerald-400 mt-0.5">Sobresaliente</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Comentarios del Supervisor</label>
+                <textarea class="w-full border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-slate-50 dark:bg-slate-950 focus:bg-white dark:focus:bg-slate-900 focus:border-indigo-500 outline-none transition resize-none text-xs text-slate-800 dark:text-slate-200 h-32 leading-relaxed" placeholder="Observaciones detalladas de los supervisores..." readonly>Excelente manejo de los tiempos de respuesta durante las horas pico de esta semana. Se sugiere continuar reforzando el registro de actividades en la checklist diaria de forma oportuna.</textarea>
+            </div>
+
+            <div class="flex justify-end pt-2">
+                <button onclick="alert('Retroalimentación firmada digitalmente.')" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-5 py-3 rounded-xl shadow-md transition active:scale-[0.98]">
+                    ✓ Entendido y Conforme
+                </button>
+            </div>
+
+        </section>
     </main>
 
     <script>
-        // Simulación de envío del formulario
-        function submitFeedback(event) {
-            event.preventDefault();
-            const textarea = document.getElementById('feedback-text');
-            if (textarea.value.trim() !== "") {
-                alert('¡Tus observaciones han sido registradas y notificadas al cuerpo de supervisión!');
-                textarea.value = "";
+        // Control menú móvil
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+            } else {
+                menu.classList.add('hidden');
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
             }
         }
 
         // Control del Tema Claro / Oscuro
         const themeToggleBtn = document.getElementById('theme-toggle');
-        
         function updateThemeIcon() {
             if (document.documentElement.classList.contains('dark')) {
                 themeToggleBtn.innerText = '☀️';
@@ -139,11 +136,10 @@
                 themeToggleBtn.innerText = '🌙';
             }
         }
-
         updateThemeIcon();
 
         if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', function() {
+            themeToggleBtn.addEventListener('click', function () {
                 if (document.documentElement.classList.contains('dark')) {
                     document.documentElement.classList.remove('dark');
                     localStorage.setItem('theme', 'light');
