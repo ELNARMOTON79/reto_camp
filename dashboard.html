@@ -1,171 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAFUEX - Dashboard</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <title>Dashboard - Fuencor</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(12px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body {
+            font-family: Inter, system-ui, sans-serif;
+        }
     </style>
 </head>
-
-<body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
-
-    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-            
-            <div class="flex items-center gap-2">
-                <span class="text-xl">🚀</span>
-                <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">CAFUEX</h1>
+<body class="min-h-screen bg-gradient-to-br from-red-50 via-red-100 to-red-200 text-gray-900">
+    <header class="bg-white/90 backdrop-blur border-b border-red-200 shadow-sm sticky top-0 z-20">
+        <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+                <a href="index.html" class="text-2xl font-semibold text-red-700">Fuencor</a>
+                <p class="text-sm text-red-500 opacity-90">Propiedades con estilo y confianza</p>
             </div>
-
-            <nav class="hidden md:flex items-center gap-1">
-                <a href="dashboard.html" class="px-3 py-2 rounded-xl text-sm font-bold bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400">Inicio</a>
-                <a href="checklist.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Checklist</a>
-                <a href="direccion.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Directorio</a>
-                <a href="perfil.html" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Mi Perfil</a>
+            <nav>
+                <ul class="flex flex-wrap items-center gap-3 text-sm font-medium text-red-700">
+                    <li><a href="dashboard.html" class="px-3 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700">Dashboard</a></li>
+                    <li><a href="manual.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Manual Interactivo</a></li>
+                    <li><a href="checklist.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Checklist Diaria</a></li>
+                    <li><a href="retroalimentacion.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Retroalimentación</a></li>
+                    <li><a href="gamificacion.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Gamificación</a></li>
+                    <li><a href="crecimiento.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Crecimiento</a></li>
+                    <li><a href="index.html" class="px-3 py-2 rounded-lg hover:bg-red-100">Cerrar sesión</a></li>
+                </ul>
             </nav>
-            
-            <div class="flex items-center gap-2">
-                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition text-sm">
-                    🌙
-                </button>
-                
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
-                    <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 space-y-1">
-            <a href="dashboard.html" class="block px-4 py-2.5 rounded-xl text-sm font-bold bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400">Inicio</a>
-            <a href="checklist.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">Checklist</a>
-            <a href="direccion.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">Directorio</a>
-            <a href="perfil.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">Mi Perfil</a>
         </div>
     </header>
 
-    <main class="flex-1 max-w-6xl mx-auto w-full px-4 py-8 animate-fade-in-up">
-        
-        <section class="mb-8">
-            <h2 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white sm:text-3xl">Panel Central</h2>
-            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Bienvenido al ecosistema operativo de CAFUEX.</p>
+    <main class="mx-auto max-w-6xl px-6 py-10">
+        <section class="text-center mb-12">
+            <h1 class="text-3xl font-semibold text-red-700 mb-4">Bienvenido al Dashboard de Fuencor</h1>
+            <p class="text-gray-600">Accede a las diferentes secciones para gestionar tu trabajo y crecimiento profesional.</p>
         </section>
-
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            
-            <a href="checklist.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
-                <span class="text-2xl block mb-3">✅</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Checklist Diaria</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Registro obligatorio y control de actividades operacionales de tu turno.</p>
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="manual.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">Manual Interactivo</h3>
+                <p class="text-gray-600">Accede a videos, guías y scripts para tu capacitación.</p>
             </a>
-
-            <a href="manual.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
-                <span class="text-2xl block mb-3">📖</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Manual Interactivo</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Consulta las normativas de convivencia, guías rápidas y material multimedia.</p>
+            <a href="checklist.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">Checklist Diaria</h3>
+                <p class="text-gray-600">Marca tus tareas completadas y añade observaciones.</p>
             </a>
-
-            <a href="crecimiento.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
-                <span class="text-2xl block mb-3">📈</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Plan de Crecimiento</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Monitorea tu escalafón, objetivos comerciales y metas de ascenso.</p>
+            <a href="retroalimentacion.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">Retroalimentación</h3>
+                <p class="text-gray-600">Comparte tus avances y recibe feedback del supervisor.</p>
             </a>
-
-            <a href="gamificacion.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
-                <span class="text-2xl block mb-3">🎖️</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Logros e Insignias</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Visualiza tus puntos acumulados, recompensas y el ranking global.</p>
+            <a href="gamificacion.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">Gamificación</h3>
+                <p class="text-gray-600">Ve tus insignias, rankings y puntos acumulados.</p>
             </a>
-
-            <a href="direccion.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
-                <span class="text-2xl block mb-3">📇</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Directorio y Soporte</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Contactos directos de soporte técnico, recursos humanos y supervisores.</p>
+            <a href="crecimiento.html" class="p-6 border border-red-200 rounded-2xl bg-white/90 shadow-lg hover:shadow-xl transition hover:bg-red-50 md:col-span-2 lg:col-span-1">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">Crecimiento y Niveles</h3>
+                <p class="text-gray-600">Revisa tu progreso y metas para ascender de nivel.</p>
             </a>
-
-            <a href="perfil.html" class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm hover:border-indigo-500 dark:hover:border-indigo-500 transition duration-300">
-                <span class="text-2xl block mb-3">👤</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Mi Cuenta</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Configura tus datos de contacto, cambia tu contraseña y revisa tu estatus.</p>
-            </a>
-
         </section>
     </main>
-
-    <script>
-        // Función para abrir y cerrar el menú móvil de forma reactiva
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
-            
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                // Cambiar icono a "X" (Cerrar)
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
-            } else {
-                menu.classList.add('hidden');
-                // Regresar icono a "Hamburguesa"
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
-            }
-        }
-
-        // Control del Tema Claro / Oscuro
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        
-        function updateThemeIcon() {
-            if (document.documentElement.classList.contains('dark')) {
-                themeToggleBtn.innerText = '☀️';
-            } else {
-                themeToggleBtn.innerText = '🌙';
-            }
-        }
-
-        updateThemeIcon();
-
-        if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', function() {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-                updateThemeIcon();
-            });
-        }
-    </script>
 </body>
 </html>
